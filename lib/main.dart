@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:hive5_web/app_theme.dart';
-import 'package:hive5_web/home_page.dart';
+import 'package:hive5_web/home/home_page.dart';
 import 'package:hive5_web/projects/hive5/hive5.dart';
-import 'package:hive5_web/projects/projects.dart';
 
 void main() {
   runApp(MyApp());
@@ -17,22 +16,29 @@ class MyApp extends StatelessWidget {
       scaffoldBackgroundColor: AppTheme.backgroundColor,
       visualDensity: VisualDensity.adaptivePlatformDensity,
       fontFamily: 'NotoSans',
+      dialogBackgroundColor: AppTheme.backgroundColor,
+      tabBarTheme: TabBarTheme(
+        labelColor: AppTheme.foregroundColor,
+        indicatorSize: TabBarIndicatorSize.label,
+        indicator: UnderlineTabIndicator(
+          borderSide: BorderSide(width: 2, color: AppTheme.foregroundColor),
+        ),
+      ),
     );
     return MaterialApp(
-      title: 'Hive: Origins',
+      title: "Jiachen Ren",
       theme: theme.copyWith(
-          textTheme: theme.textTheme.apply(
-              bodyColor: AppTheme.foregroundColor, displayColor: AppTheme.foregroundColor)),
+        textTheme: theme.textTheme.apply(
+          bodyColor: AppTheme.foregroundColor,
+          displayColor: AppTheme.foregroundColor,
+        ),
+      ),
       routes: {
         HomePage.route: (context) => HomePage(),
-        Projects.route: (context) => Projects(),
+        Projects.route: (context) => HomePage(tabIndex: 1),
         Hive5.route: (context) => Hive5(),
       },
       initialRoute: HomePage.route,
     );
   }
 }
-
-
-
-

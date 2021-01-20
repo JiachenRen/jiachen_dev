@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_icons/flutter_icons.dart';
-import 'package:hive5_web/app_theme.dart';
-import 'package:hive5_web/projects/projects.dart';
+import 'package:hive5_web/assets.dart';
+import 'package:hive5_web/components/buttons.dart';
+import 'package:hive5_web/components/themed_flat_button.dart';
+import 'package:hive5_web/home/home_page.dart';
 import 'package:path/path.dart' as p;
 import 'package:url_launcher/url_launcher.dart';
 
@@ -25,7 +27,7 @@ class Hive5 extends StatelessWidget {
                 ClipRRect(
                   borderRadius: BorderRadius.all(Radius.circular(16)),
                   child: Image.asset(
-                    'images/app_icon.jpg',
+                    Assets.hive5Icon,
                     height: 100,
                     width: 100,
                   ),
@@ -50,21 +52,9 @@ class Hive5 extends StatelessWidget {
                 IntrinsicWidth(
                   child: Row(
                     children: [
-                      _Button(
-                        onPressed: () {
-                          launch('mailto:jiachenren.dev@gmail.com');
-                        },
-                        icon: Ionicons.ios_mail,
-                        label: 'Email',
-                      ),
-                      _Button(
-                        onPressed: () {
-                          launch('https://github.com/JiachenRen');
-                        },
-                        icon: Ionicons.logo_github,
-                        label: 'GitHub',
-                      ),
-                      _Button(
+                      Buttons.email,
+                      Buttons.github,
+                      ThemedFlatButton(
                         onPressed: () {
                           launch(
                               'https://apps.apple.com/us/app/hive-origins/id1549356851');
@@ -79,37 +69,6 @@ class Hive5 extends StatelessWidget {
             ),
           ),
         ),
-      ),
-    );
-  }
-}
-
-class _Button extends StatelessWidget {
-  final String label;
-  final IconData icon;
-  final VoidCallback onPressed;
-
-  const _Button(
-      {Key key,
-      @required this.label,
-      @required this.icon,
-      @required this.onPressed})
-      : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return FlatButton.icon(
-      onPressed: onPressed,
-      icon: Icon(
-        icon,
-        color: AppTheme.foregroundColor,
-      ),
-      label: Text(
-        label,
-        style: Theme.of(context)
-            .textTheme
-            .bodyText1
-            .copyWith(color: AppTheme.foregroundColor),
       ),
     );
   }

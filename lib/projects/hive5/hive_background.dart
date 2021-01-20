@@ -4,6 +4,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:hive5_web/assets.dart';
 import 'package:hive5_web/effects/breathe.dart';
+import 'package:platform_detect/platform_detect.dart';
 
 class HiveBackground extends StatefulWidget {
   /// Controls spatial density of hexagons.
@@ -83,6 +84,8 @@ class _HiveBackgroundState extends State<HiveBackground>
     });
   }
 
+  bool get _isHighPerformanceBrowser => !browser.isSafari;
+
   Iterable<Widget> _genNodes(double w, double h, double ix, double iy) sync* {
     var y = iy;
     while (y < h) {
@@ -90,7 +93,8 @@ class _HiveBackgroundState extends State<HiveBackground>
       while (x < w) {
         if (rand.nextDouble() < widget.spawnRate) {
           final color = _colors[rand.nextInt(_colors.length)].withOpacity(
-              rand.nextDouble() * widget.variableOpacity + widget.baseOpacity);
+              rand.nextDouble() * widget.variableOpacity +
+                  widget.baseOpacity * (_isHighPerformanceBrowser ? 1 : 0.5));
           Widget child = Padding(
             padding: EdgeInsets.all(_radius * widget.paddingRatio),
             child: Image.asset(
@@ -98,12 +102,15 @@ class _HiveBackgroundState extends State<HiveBackground>
               color: color,
             ),
           );
-          child = Breathe(
-            start: null,
-            minOpacity: 0,
-            duration: Duration(milliseconds: rand.nextInt(1000) + 2000),
-            child: child,
-          );
+          if (_isHighPerformanceBrowser) {
+            // Web view too puny to handle my mighty animation
+            child = Breathe(
+              start: null,
+              minOpacity: 0,
+              duration: Duration(milliseconds: rand.nextInt(1000) + 2000),
+              child: child,
+            );
+          }
           yield Positioned(
             left: x,
             top: y,
