@@ -41,12 +41,12 @@ class Projects extends StatelessWidget with _TabMixin {
   @override
   Widget build(BuildContext context) {
     return Center(
-      child: SizedBox(
-        height: 150,
+      child: IntrinsicHeight(
         child: Wrap(
           spacing: 32,
+          runSpacing: 32,
           children: _projects,
-        )
+        ),
       ),
     );
   }

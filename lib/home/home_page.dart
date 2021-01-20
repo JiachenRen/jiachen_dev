@@ -3,9 +3,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_icons/flutter_icons.dart';
 import 'package:hive5_web/assets.dart';
 import 'package:hive5_web/components/buttons.dart';
+import 'package:hive5_web/components/detect_browser.dart';
 import 'package:hive5_web/components/image_gallery.dart';
 import 'package:hive5_web/components/themed_flat_button.dart';
-import 'package:hive5_web/projects/hive5/hive_background.dart';
+import 'package:hive5_web/effects/hive_background.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 part 'projects.dart';
@@ -25,7 +26,7 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage>
-    with SingleTickerProviderStateMixin {
+    with SingleTickerProviderStateMixin, DetectBrowser {
   final List<_TabMixin> _tabs = [
     AboutMe(),
     Projects(),

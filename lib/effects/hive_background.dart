@@ -4,7 +4,6 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:hive5_web/assets.dart';
 import 'package:hive5_web/effects/breathe.dart';
-import 'package:platform_detect/platform_detect.dart';
 
 class HiveBackground extends StatefulWidget {
   /// Controls spatial density of hexagons.
@@ -30,9 +29,9 @@ class HiveBackground extends StatefulWidget {
     this.gridDensity = 8,
     this.maxRadius = 90.0,
     this.paddingRatio = 0.05,
-    this.baseOpacity = 0.2,
+    this.baseOpacity = 0.1,
     this.spawnRate = 0.5,
-    this.variableOpacity = 0.1,
+    this.variableOpacity = 0.2,
     this.child,
   }) : super(key: key);
 
@@ -52,18 +51,20 @@ class _HiveBackgroundState extends State<HiveBackground>
     with TickerProviderStateMixin {
   static final rand = Random();
 
-  static const _colors = [
-    Colors.deepOrange,
-    Colors.orange,
-    Colors.yellow,
-    Colors.indigo,
-    Colors.blue,
-    Colors.purple,
-    Colors.pink,
-    Colors.red,
-  ];
-
   double _radius;
+
+  List<Widget> _images;
+
+  @override
+  void initState() {
+    _images = [
+      ...Assets.coloredHexagonsFilled,
+      ...Assets.coloredHexagonsOutlined
+    ].map((e) {
+      return Image.asset(e);
+    }).toList();
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -84,33 +85,27 @@ class _HiveBackgroundState extends State<HiveBackground>
     });
   }
 
-  bool get _isHighPerformanceBrowser => !browser.isSafari;
-
   Iterable<Widget> _genNodes(double w, double h, double ix, double iy) sync* {
     var y = iy;
     while (y < h) {
       var x = ix;
       while (x < w) {
         if (rand.nextDouble() < widget.spawnRate) {
-          final color = _colors[rand.nextInt(_colors.length)].withOpacity(
-              rand.nextDouble() * widget.variableOpacity +
-                  widget.baseOpacity * (_isHighPerformanceBrowser ? 1 : 0.5));
+          final opacity =
+              rand.nextDouble() * widget.variableOpacity + widget.baseOpacity;
           Widget child = Padding(
             padding: EdgeInsets.all(_radius * widget.paddingRatio),
-            child: Image.asset(
-              rand.nextBool() ? Assets.hexagonOutlined : Assets.hexagonFilled,
-              color: color,
+            child: Opacity(
+              opacity: opacity,
+              child: _images[rand.nextInt(_images.length)],
             ),
           );
-          if (_isHighPerformanceBrowser) {
-            // Web view too puny to handle my mighty animation
-            child = Breathe(
-              start: null,
-              minOpacity: 0,
-              duration: Duration(milliseconds: rand.nextInt(1000) + 2000),
-              child: child,
-            );
-          }
+          child = Breathe(
+            start: null,
+            minOpacity: 0,
+            duration: Duration(milliseconds: rand.nextInt(1000) + 2000),
+            child: child,
+          );
           yield Positioned(
             left: x,
             top: y,

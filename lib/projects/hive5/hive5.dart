@@ -7,7 +7,7 @@ import 'package:hive5_web/home/home_page.dart';
 import 'package:path/path.dart' as p;
 import 'package:url_launcher/url_launcher.dart';
 
-import 'hive_background.dart';
+import '../../effects/hive_background.dart';
 
 class Hive5 extends StatelessWidget {
   static final route = p.join(Projects.route, 'hive5');
