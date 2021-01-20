@@ -27,4 +27,5 @@ abstract class Assets {
   static const String mangaxIcon = 'images/mangax_icon.png';
   static const String kelvinIcon = 'images/kelvin_icon.png';
   static const String gomokuZeroIcon = 'images/gomoku_zero_icon.png';
+  static const String leafIcon = 'images/leaf_icon.png';
 }

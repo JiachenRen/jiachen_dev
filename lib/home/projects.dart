@@ -17,6 +17,11 @@ class Projects extends StatelessWidget with _TabMixin {
       ),
     ),
     _Project(
+      name: 'Kelvin',
+      url: 'https://github.com/JiachenRen/Kelvin',
+      icon: Image.asset(Assets.kelvinIcon),
+    ),
+    _Project(
       name: 'MangaX',
       url: null,
       icon: ClipRRect(
@@ -27,25 +32,28 @@ class Projects extends StatelessWidget with _TabMixin {
       ),
     ),
     _Project(
-      name: 'Kelvin',
-      url: 'https://github.com/JiachenRen/Kelvin',
-      icon: Image.asset(Assets.kelvinIcon),
-    ),
-    _Project(
       name: 'Gomoku Zero',
       url: 'https://github.com/JiachenRen/GomokuZero',
       icon: Image.asset(Assets.gomokuZeroIcon),
+    ),
+    _Project(
+      name: 'Leaf Notes',
+      url: 'https://getleaf.io',
+      icon: Image.asset(Assets.leafIcon),
     ),
   ];
 
   @override
   Widget build(BuildContext context) {
     return Center(
-      child: IntrinsicHeight(
-        child: Wrap(
-          spacing: 32,
-          runSpacing: 32,
-          children: _projects,
+      child: Padding(
+        padding: const EdgeInsets.all(20.0),
+        child: IntrinsicHeight(
+          child: Wrap(
+            spacing: 32,
+            runSpacing: 32,
+            children: _projects,
+          ),
         ),
       ),
     );
