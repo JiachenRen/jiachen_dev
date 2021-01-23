@@ -9,10 +9,10 @@ import 'package:url_launcher/url_launcher.dart';
 
 import '../../effects/hive_background.dart';
 
-class Hive5 extends StatelessWidget {
-  static final route = p.join(Projects.route, 'hive5');
+class Aries extends StatelessWidget {
+  static final route = p.join(Projects.route, 'aries');
 
-  Hive5({Key key}) : super(key: key);
+  Aries({Key key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -27,7 +27,7 @@ class Hive5 extends StatelessWidget {
                 ClipRRect(
                   borderRadius: BorderRadius.all(Radius.circular(16)),
                   child: Image.asset(
-                    Assets.hive5Icon,
+                    Assets.ariesIcon,
                     height: 100,
                     width: 100,
                   ),
@@ -36,7 +36,7 @@ class Hive5 extends StatelessWidget {
                   height: 16,
                 ),
                 Text(
-                  'Hive: Origins',
+                  'Aries: Origins',
                   style: Theme.of(context).textTheme.headline5,
                 ),
                 SizedBox(
@@ -57,7 +57,7 @@ class Hive5 extends StatelessWidget {
                       ThemedFlatButton(
                         onPressed: () {
                           launch(
-                              'https://apps.apple.com/us/app/hive-origins/id1549356851');
+                              'https://apps.apple.com/us/app/aries-origins/id1549356851');
                         },
                         icon: Ionicons.ios_appstore,
                         label: 'App Store',

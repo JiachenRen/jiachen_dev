@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:hive5_web/app_theme.dart';
 import 'package:hive5_web/home/home_page.dart';
-import 'package:hive5_web/projects/hive5/hive5.dart';
+import 'package:hive5_web/projects/aries/aries.dart';
 
 void main() {
   runApp(MyApp());
@@ -36,7 +36,7 @@ class MyApp extends StatelessWidget {
       routes: {
         HomePage.route: (context) => HomePage(),
         Projects.route: (context) => HomePage(tabIndex: 1),
-        Hive5.route: (context) => Hive5(),
+        Aries.route: (context) => Aries(),
       },
       initialRoute: HomePage.route,
     );

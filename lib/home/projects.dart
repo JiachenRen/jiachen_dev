@@ -7,10 +7,10 @@ class Projects extends StatelessWidget with _TabMixin {
 
   static final _projects = [
     _Project(
-      name: 'Hive: Origins',
-      url: '/#/projects/hive5',
+      name: 'Aries: Origins',
+      url: '/#/projects/aries',
       icon: ClipRRect(
-        child: Image.asset(Assets.hive5Icon),
+        child: Image.asset(Assets.ariesIcon),
         borderRadius: BorderRadius.all(
           Radius.circular(16),
         ),
