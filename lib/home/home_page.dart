@@ -38,12 +38,6 @@ class _HomePageState extends State<HomePage>
   @override
   void initState() {
     _controller = TabController(length: _tabs.length, vsync: this);
-    Future.microtask(() {
-      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-          duration: Duration(seconds: 7),
-          content: Text(
-              'Website built with Flutter web beta. For best performance, please open in Chrome.')));
-    });
     super.initState();
   }
 

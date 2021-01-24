@@ -53,7 +53,16 @@ class Aries extends StatelessWidget {
                   child: Row(
                     children: [
                       Buttons.email,
-                      Buttons.github,
+                      ThemedFlatButton(
+                        onPressed: () {
+                          // Prefers GitHub to host downloadable content to reduce server load.
+                          launch(
+                              'https://github.com/JiachenRen/jiachen_dev/releases/download/v1.0/aries_v1.0.apk');
+                          // launch('/downloads/aries_v1.0.apk');
+                        },
+                        icon: Ionicons.logo_android,
+                        label: 'Android',
+                      ),
                       ThemedFlatButton(
                         onPressed: () {
                           launch(
